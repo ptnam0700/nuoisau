@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuôi Tôi - Dự án thiện nguyện cho cuộc sống tốt đẹp hơn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #a78bfa;       /* main purple */
+      --primary-dark: #8b6cfb;
+      --secondary: #fbcfe8;     /* blush */
+      --gold: #fbbf24;          /* accent gold */
+      --bg-light: #ede9fe;      /* soft lavender */
+      --bg-white: #ffffff;
+      --text-dark: #2e1065;     /* headline */
+      --text-gray: #6b7280;     /* body text */
+      --border-soft: #e5e7eb;
+      --shadow: rgba(167, 139, 250, 0.22);
+      --shadow-strong: rgba(167, 139, 250, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-gray);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background: var(--bg-light);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Quicksand", sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #d6b3ff 0%, #a78bfa 45%, #fbcfe8 100%);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      font-size: 36px;
+    }
+
+    .donate-btn-header {
+      background: var(--primary);
+      color: white;
+      padding: 12px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(167, 139, 250, 0.35);
+      white-space: nowrap;
+    }
+
+    .donate-btn-header:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: var(--secondary);
+      color: var(--text-dark);
+      box-shadow: 0 8px 24px rgba(251, 207, 232, 0.55);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ede9fe 0%, #fbcfe8 40%, #a78bfa 100%);
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="3" fill="rgba(255,255,255,0.28)"/><circle cx="90" cy="60" r="2" fill="rgba(255,255,255,0.18)"/><circle cx="70" cy="100" r="2" fill="rgba(255,255,255,0.18)"/></svg>');
+      background-size: 80px 80px;
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      text-shadow: none;
+    }
+
+    .hero-subtitle {
+      font-size: 28px;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      font-size: 18px;
+      color: rgba(46, 16, 101, 0.85);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .stat-item:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .stat-item:nth-child(3) {
+      animation-delay: 1s;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: rgba(46, 16, 101, 0.82);
+      margin-top: 5px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 20px 50px;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(167, 139, 250, 0.38);
+      margin-top: 20px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      background: var(--secondary);
+      color: var(--text-dark);
+      box-shadow: 0 12px 40px rgba(251, 207, 232, 0.55);
+    }
+
+    .about {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 48px;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      font-size: 20px;
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 4s ease-in-out infinite;
+      box-shadow: 0 10px 40px var(--shadow);
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--text-gray);
+    }
+
+    .about-text strong {
+      color: var(--primary);
+    }
+
+    .pricing {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .pricing-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(167, 139, 250, 0.12);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+    }
+
+    .pricing-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(195, 139, 255, 0.22);
+    }
+
+    .pricing-card.featured {
+      border: 3px solid var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--secondary);
+      color: var(--text-dark);
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(255, 179, 217, 0.45);
+      z-index: 10;
+    }
+
+    .pricing-card.featured .pricing-title {
+      margin-top: 45px;
+    }
+
+    .pricing-title {
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+
+    .pricing-amount {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 20px 0;
+      white-space: nowrap;
+    }
+
+    .pricing-amount span {
+      font-size: 20px;
+      color: var(--text-gray);
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin: 30px 0;
+    }
+
+    .pricing-features li {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-name {
+      color: var(--text-gray);
+    }
+
+    .feature-value {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .pricing-btn {
+      width: 100%;
+      padding: 15px 30px;
+      margin-top: 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px var(--shadow);
+    }
+
+    .pricing-btn:hover {
+      background: var(--secondary);
+      color: var(--text-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(251, 207, 232, 0.6);
+    }
+
+    .pricing-card.featured .pricing-btn {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(167, 139, 250, 0.45);
+    }
+
+    .pricing-card.featured .pricing-btn:hover {
+      background: var(--secondary);
+      color: var(--text-dark);
+      box-shadow: 0 6px 20px rgba(251, 207, 232, 0.6);
+    }
+
+    .transparency {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+
+    .transparency-notice {
+      background: linear-gradient(135deg, #f5e9ff 0%, #ffe5f7 100%);
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 40px;
+      border-left: 5px solid var(--primary);
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .transparency-notice h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .transparency-notice p {
+      color: var(--text-gray);
+      font-size: 16px;
+    }
+
+    .expense-breakdown {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(195, 139, 255, 0.12);
+    }
+
+    .expense-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--border-soft);
+      transition: all 0.3s ease;
+    }
+
+    .expense-item:hover {
+      background: var(--bg-light);
+      padding-left: 30px;
+    }
+
+    .expense-item:last-child {
+      border-bottom: none;
+    }
+
+    .expense-name {
+      font-size: 18px;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .expense-amount {
+      font-size: 20px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .expense-total {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 3px solid var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .expense-total .expense-name {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .expense-total .expense-amount {
+      font-size: 32px;
+      color: var(--gold);
+    }
+
+    .testimonials {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(195, 139, 255, 0.12);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(154, 107, 255, 0.16);
+    }
+
+    .quote-icon {
+      font-size: 48px;
+      color: var(--primary);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      color: var(--text-gray);
+      line-height: 1.8;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .author-info h4 {
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+    }
+
+    .author-info p {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
+
+    .faq {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+
+    .faq-list {
+      max-width: 900px;
+      margin: 50px auto 0;
+    }
+
+    .faq-item {
+      background: white;
+      border: 2px solid var(--border-soft);
+      border-radius: 15px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--primary);
+    }
+
+    .faq-question {
+      padding: 25px 30px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+      background: var(--bg-light);
+    }
+
+    .faq-question::after {
+      content: "+";
+      font-size: 28px;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer-content {
+      padding: 0 30px 25px;
+      color: var(--text-gray);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .code-generator {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #d8b4fe 0%, #c38bff 100%);
+      text-align: center;
+    }
+
+    .code-generator h2 {
+      color: white;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .code-generator p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .code-display {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(195, 139, 255, 0.3);
+    }
+
+    .code-label {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .code-number {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+      font-family: "Courier New", monospace;
+    }
+
+    .generate-btn {
+      background: var(--primary);
+      color: white;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px var(--shadow);
+    }
+
+    .generate-btn:hover {
+      background: var(--secondary);
+      color: var(--text-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(251, 207, 232, 0.5);
+    }
+
+    footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero-subtitle {
+        font-size: 22px;
+      }
+
+      .hero-stats {
+        gap: 30px;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 36px;
+      }
+
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, #ffffff 0%, #fff5e1 50%, #ffffff 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <span>🍜</span>
+          <div>Nuôi Tôi</div>
+        </a>
+        <a href="#donate" class="donate-btn-header">Ủng hộ ngay</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="shimmer">Nuôi Tôi</h1>
+          <p class="hero-subtitle">Dự án thiện nguyện cho một cuộc sống tốt đẹp hơn</p>
+          <p class="hero-description">
+            Mỗi ngày trôi qua, tôi vẫn đang phải vật lộn với chi phí sinh hoạt,
+            trà sữa, Netflix, và những bữa ăn cơm văn phòng đắt đỏ.
+            Hãy chung tay cùng tôi để tôi có thể sống một cuộc sống xứng đáng hơn!
+          </p>
+          <a href="#donate" class="cta-button">Nuôi tôi ngay 💝</a>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-target="1">1</span>
+              <span class="stat-label">Người được nuôi</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="0">0</span>
+              <span class="stat-label">Nhà hảo tâm</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="100">100</span>
+              <span class="stat-label">Tỷ đồng mục tiêu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Về tôi</h2>
+          <p class="section-subtitle">
+            Câu chuyện của một người trẻ đang cần sự hỗ trợ từ cộng đồng
+          </p>
+        </div>
+        <div class="about-content">
+          <div class="about-image">
+            <img src="about.png" alt="Về tôi">
+          </div>
+          <div class="about-text">
+            <p>
+              Xin chào các <strong>anh chị nuôi</strong> thân mến! Tôi là một người trẻ đầy tham vọng,
+              đang sống tại thành phố với chi phí sinh hoạt ngày càng cao ngất ngưởng.
+            </p>
+            <p>
+              Từ năm 2025, tôi đã nhận ra rằng: <strong>Tại sao phải tự nuôi bản thân
+              khi có thể để người khác nuôi?</strong> Đây là một mô hình thiện nguyện hoàn toàn mới,
+              lấy cảm hứng từ các dự án thành công trước đó.
+            </p>
+            <p>
+              Với chỉ <strong>1,45 triệu đồng/năm</strong>, các anh chị sẽ giúp tôi có đủ tiền cho
+              trà sữa, cơm văn phòng, Netflix, và các nhu cầu thiết yếu khác.
+              Tôi cam kết sử dụng tiền <em>cực kỳ minh bạch</em> (có thể công khai sau 15 ngày kiểm tra).
+            </p>
+            <p>
+              <strong>Lưu ý:</strong> Chi phí vận hành (1 tỷ đồng/năm) sẽ được lấy từ lãi tiết kiệm,
+              không trích từ khoản đóng góp của các anh chị đâu nhé! 😊
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="donate">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Gói ủng hộ</h2>
+          <p class="section-subtitle">
+            Chọn gói phù hợp với khả năng của bạn để góp phần vào cuộc sống của tôi
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3 class="pricing-title">Gói Cơ Bản</h3>
+            <div class="pricing-amount">
+              450.000đ
+              <span>/ 3 tháng</span>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <span class="feature-name">Trà sữa</span>
+                <span class="feature-value">45 ly</span>
+              </li>
+              <li>
+                <span class="feature-name">Cơm văn phòng</span>
+                <span class="feature-value">60 bữa</span>
+              </li>
+              <li>
+                <span class="feature-name">Xăng xe</span>
+                <span class="feature-value">Không</span>
+              </li>
+              <li>
+                <span class="feature-name">Netflix</span>
+                <span class="feature-value">Dùng chung</span>
+              </li>
+              <li>
+                <span class="feature-name">Ảnh cập nhật</span>
+                <span class="feature-value">Có thể có</span>
+              </li>
+            </ul>
+            <button class="pricing-btn" onclick="showParodyMessage()">Chọn gói này</button>
+          </div>
+
+          <div class="pricing-card featured">
+            <span class="featured-badge">Phổ biến nhất</span>
+            <h3 class="pricing-title">Gói Tiêu Chuẩn</h3>
+            <div class="pricing-amount">
+              1.450.000đ
+              <span>/ năm</span>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <span class="feature-name">Trà sữa</span>
+                <span class="feature-value">Không giới hạn</span>
+              </li>
+              <li>
+                <span class="feature-name">Cơm văn phòng</span>
+                <span class="feature-value">365 bữa</span>
+              </li>
+              <li>
+                <span class="feature-name">Xăng xe</span>
+                <span class="feature-value">5 triệu/năm</span>
+              </li>
+              <li>
+                <span class="feature-name">Netflix Premium</span>
+                <span class="feature-value">Có</span>
+              </li>
+              <li>
+                <span class="feature-name">Ảnh cập nhật</span>
+                <span class="feature-value">Mỗi tháng</span>
+              </li>
+              <li>
+                <span class="feature-name">Mã Nuôi Tôi (NT)</span>
+                <span class="feature-value">Độc quyền*</span>
+              </li>
+            </ul>
+            <button class="pricing-btn" onclick="showParodyMessage()">Chọn gói này</button>
+          </div>
+
+          <div class="pricing-card">
+            <h3 class="pricing-title">Gói VIP</h3>
+            <div class="pricing-amount">
+              5.000.000đ
+              <span>/ năm</span>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <span class="feature-name">Tất cả gói Tiêu Chuẩn</span>
+                <span class="feature-value">✓</span>
+              </li>
+              <li>
+                <span class="feature-name">Cafe Starbucks</span>
+                <span class="feature-value">Mỗi ngày</span>
+              </li>
+              <li>
+                <span class="feature-name">Ăn nhà hàng</span>
+                <span class="feature-value">2 lần/tháng</span>
+              </li>
+              <li>
+                <span class="feature-name">Du lịch</span>
+                <span class="feature-value">1 chuyến/năm</span>
+              </li>
+              <li>
+                <span class="feature-name">Tên trên website</span>
+                <span class="feature-value">Có thể</span>
+              </li>
+              <li>
+                <span class="feature-name">Video call định kỳ</span>
+                <span class="feature-value">Mỗi quý</span>
+              </li>
+            </ul>
+            <button class="pricing-btn" onclick="showParodyMessage()">Chọn gói này</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="transparency" id="transparency">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Báo cáo tài chính minh bạch</h2>
+          <p class="section-subtitle">
+            Chúng tôi cam kết công khai 100% thu chi (sau 15 ngày đóng băng tài khoản để kiểm tra)
+          </p>
+        </div>
+
+        <div class="transparency-notice">
+          <h3>🔒 Thông báo quan trọng</h3>
+          <p>
+            Để đảm bảo tính minh bạch và chính xác, tài khoản hiện đang được đóng băng trong 15 ngày
+            để thống kê thu-chi. Chúng tôi đang làm việc với bên thứ ba độc lập (có thể là bạn tôi)
+            để kiểm toán. Cảm ơn sự kiên nhẫn của quý vị!
+          </p>
+        </div>
+
+        <div class="expense-breakdown">
+          <h3 style="margin-bottom: 30px; color: var(--primary); font-size: 28px;">
+            Chi tiết sử dụng 1.450.000đ/năm
+          </h3>
+          <div class="expense-item">
+            <span class="expense-name">🧋 Trà sữa (45.000đ x 180 ly)</span>
+            <span class="expense-amount">810.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">🍚 Cơm văn phòng (25.000đ x 200 bữa)</span>
+            <span class="expense-amount">500.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">📺 Netflix Premium</span>
+            <span class="expense-amount">260.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">☕ Cafe Highlands (mỗi sáng)</span>
+            <span class="expense-amount">1.095.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">🎮 PlayStation Plus</span>
+            <span class="expense-amount">550.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">💅 Chăm sóc cá nhân</span>
+            <span class="expense-amount">850.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">🎁 Quà sinh nhật bản thân</span>
+            <span class="expense-amount">2.000.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">📱 Data 4G không giới hạn</span>
+            <span class="expense-amount">360.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">🎬 Rạp phim (2 lần/tháng)</span>
+            <span class="expense-amount">600.000đ</span>
+          </div>
+          <div class="expense-item">
+            <span class="expense-name">✨ Chi phí khác (bí mật)</span>
+            <span class="expense-amount">3.425.000đ</span>
+          </div>
+          <div class="expense-total">
+            <span class="expense-name">💰 TỔNG CỘNG</span>
+            <span class="expense-amount">10.450.000đ</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center; color: var(--text-gray); font-style: italic;">
+          <p>* Đừng lo, phần chênh lệch sẽ được bù từ lãi tiết kiệm của các khoản đóng góp trước đó!</p>
+          <p style="margin-top: 10px; font-size: 14px;">** Có thể có sai số do lỗi bàn giao giữa các tình nguyện viên</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Lời nhận xét từ nhà hảo tâm</h2>
+          <p class="section-subtitle">
+            Hàng nghìn người đã tin tưởng và ủng hộ dự án (có thể)
+          </p>
+        </div>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">
+              "Tôi đã ủng hộ 500 triệu đồng từ MV 'Nấu ăn cho em'. Dự án này thật ý nghĩa,
+              giúp tôi có thêm nội dung cho bài hát mới. Tôi chỉ là mạnh thường quân,
+              không tham gia quản lý nhé!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">🎤</div>
+              <div class="author-info">
+                <h4>Rapper D.V</h4>
+                <p>Nghệ sĩ nổi tiếng</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">
+              "600 triệu không phải là con số nhỏ, nhưng nhìn thấy người được nuôi có cuộc sống
+              tốt đẹp hơn thì tôi rất vui. Nếu có sai phạm thì xử lý nghiêm minh nhé!
+              (Nhưng tôi không biết gì đâu)"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">🎵</div>
+              <div class="author-info">
+                <h4>Ca sĩ H.M</h4>
+                <p>Giọng ca triệu view</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">
+              "Tôi đã nuôi được 7 năm rồi và thấy rất minh bạch! Chỉ là họ chưa trả lời tin nhắn
+              của tôi được 3 tháng thôi, nhưng tôi tin tưởng họ đang bận. Mọi người đừng vội kết luận!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">💝</div>
+              <div class="author-info">
+                <h4>Chị T.T.T</h4>
+                <p>Nhà hảo tâm trung thành</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">
+              "Tôi làm tình nguyện viên được 5 ngày thì nghỉ vì công việc chủ yếu là... đòi tiền.
+              Nhưng dự án vẫn rất ý nghĩa nhé! Chỉ là không hợp với tôi thôi."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">🙋</div>
+              <div class="author-info">
+                <h4>Cô M.L</h4>
+                <p>Cựu tình nguyện viên</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">
+              "Tôi được nhận mã NT-12345 nhưng 3 tháng sau lại thấy mã này thuộc về người khác.
+              Có lẽ do lệch pha thời gian đóng góp? Anyway, tôi vẫn tin tưởng dự án!"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">🤔</div>
+              <div class="author-info">
+                <h4>Anh A.P</h4>
+                <p>Nhà hảo tâm bối rối</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="quote-icon">"</div>
+            <p class="testimonial-text">
+              "Blockchain là tương lai! Nếu dự án này dùng blockchain thì sẽ không có tranh cãi.
+              #Web3 #Crypto #Decentralization"
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">₿</div>
+              <div class="author-info">
+                <h4>5 Phút Crypto</h4>
+                <p>Chuyên gia blockchain</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Câu hỏi thường gặp</h2>
+          <p class="section-subtitle">
+            Giải đáp mọi thắc mắc của bạn về dự án
+          </p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              Tại sao phải nuôi bạn?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Bởi vì tôi là một phần của cộng đồng, và cộng đồng cần chăm sóc mọi thành viên.
+                Việc nuôi tôi không chỉ giúp tôi có cuộc sống tốt hơn, mà còn tạo ra một mô hình
+                thiện nguyện mới, đột phá và... đầy cảm hứng.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Tiền của tôi đi đâu?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Tiền của bạn sẽ đi vào tài khoản cá nhân của tôi và được sử dụng cho các mục đích
+                thiết yếu như trà sữa, Netflix, cơm văn phòng, và các chi phí sinh hoạt khác.
+                Chúng tôi có thể công khai sao kê sau 15 ngày đóng băng tài khoản để kiểm tra.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Mã Nuôi Tôi (NT) là gì?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Mã NT là mã định danh độc quyền cho mỗi nhà hảo tâm. Tuy nhiên, do lỗi bàn giao
+                giữa các tình nguyện viên, có thể một mã sẽ được cấp cho nhiều người.
+                Đây không phải là lỗi hệ thống, mà là tính năng để bảo vệ quyền riêng tư của... tôi.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Tại sao chi phí vận hành lại 1 tỷ/năm?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Chi phí vận hành bao gồm: liên lạc với nhà hảo tâm (data 4G), khảo sát nhu cầu
+                (đi cafe để suy nghĩ), hỗ trợ tình nguyện viên (1,5-3 triệu/lượt), và các chi phí
+                quản lý khác. Đừng lo, khoản này không lấy từ tiền đóng góp của bạn đâu -
+                nó được lấy từ lãi tiết kiệm của các khoản tiền... đóng góp của người khác.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Tôi có được xem ảnh cập nhật không?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Có! Tùy vào gói ủng hộ, bạn sẽ nhận được ảnh cập nhật định kỳ về cuộc sống của tôi.
+                Từ bữa trà sữa buổi chiều, đến màn hình Netflix đang xem, và cả selfie khi đi du lịch
+                (gói VIP). Mọi thứ đều minh bạch và đầy... cảm xúc.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Nếu tôi nghi ngờ có sai phạm thì làm sao?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Hãy chờ đợi kết luận chính thức từ cơ quan chức năng (hoặc bạn tôi).
+                Trong thời gian chờ, tài khoản đã được đóng băng 15 ngày để kiểm tra.
+                Nếu có sai phạm, chúng tôi cam kết xử lý nghiêm minh. Nếu không có,
+                chúng tôi sẽ tiếp tục hoạt động và mong nhận được sự ủng hộ của bạn!
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              Tại sao tổng chi phí lại nhiều hơn 1,45 triệu?
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Đó là sức mạnh của "hiệu ứng cộng đồng"! Khi nhiều người cùng đóng góp,
+                tổng số tiền sẽ lớn hơn và tôi có thể nâng cao chất lượng cuộc sống.
+                Phần chênh lệch cũng có thể do tôi tính nhầm, hoặc do tỷ giá trà sữa tăng.
+                Nhưng đừng lo, mọi thứ đều nằm trong tầm kiểm soát... của tôi.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="code-generator" id="code">
+      <div class="container">
+        <h2>Tạo mã Nuôi Tôi của bạn</h2>
+        <p>Nhận ngay mã NT độc quyền (có thể trùng với người khác)</p>
+        <div class="code-display">
+          <div class="code-label">Mã Nuôi Tôi (NT) của bạn</div>
+          <div class="code-number" id="code-display">NT-00000</div>
+          <button class="generate-btn" onclick="generateCode()">
+            🎲 Tạo mã mới
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>🍜 Nuôi Tôi</h3>
+          <p>
+            Dự án thiện nguyện tiên phong trong việc nâng cao chất lượng cuộc sống
+            cho một cá nhân cụ thể (tôi).
+          </p>
+          <p style="margin-top: 15px; font-style: italic; font-size: 14px;">
+            "Tôi ăn no, cả làng vui" - Châm ngôn của dự án
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Liên hệ</h3>
+          <p>📧 Email: support@nuoitoi.vn</p>
+          <p>📱 Hotline: 1900-NUOI-TOI</p>
+          <p>🏢 Trụ sở: Tài khoản cá nhân</p>
+          <p>🏦 STK: 123456789 - Ngân hàng Tình Thương</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Liên kết</h3>
+          <a href="#donate">Ủng hộ ngay</a>
+          <a href="#transparency">Báo cáo tài chính</a>
+          <a href="https://taichinh.nuoitoi.com" target="_blank">Xem sao kê (sau 15 ngày)</a>
+          <a href="#faq">Câu hỏi thường gặp</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Pháp lý</h3>
+          <p>📜 Giấy phép: Đang chờ cấp</p>
+          <p>🔍 Kiểm toán: Bạn tôi</p>
+          <p>⚖️ Hình thức: Nhóm tình nguyện</p>
+          <p style="margin-top: 15px; font-size: 12px; line-height: 1.6;">
+            * Website này là parody/meme về vụ việc "Nuôi Em"
+            nhằm mục đích giải trí và châm biếm.
+            Vui lòng không chuyển tiền thật! 😄
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Nuôi Tôi. Bản quyền thuộc về tôi. Mọi hình thức sao chép cần xin phép.</p>
+        <p style="margin-top: 10px;">
+          Lấy cảm hứng từ các dự án thiện nguyện "thành công" trước đó 😏
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 100;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 20);
+    }
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.stat-number').forEach(stat => {
+        const target = parseInt(stat.dataset.target, 10);
+        animateCounter(stat, target);
+      });
+    });
+
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const wasActive = faqItem.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+        });
+
+        if (!wasActive) {
+          faqItem.classList.add('active');
+        }
+      });
+    });
+
+    function generateCode() {
+      const randomNum = Math.floor(Math.random() * 99999).toString().padStart(5, '0');
+      const codeDisplay = document.getElementById('code-display');
+
+      let counter = 0;
+      const interval = setInterval(() => {
+        const tempNum = Math.floor(Math.random() * 99999).toString().padStart(5, '0');
+        codeDisplay.textContent = `NT-${tempNum}`;
+        counter++;
+
+        if (counter > 20) {
+          clearInterval(interval);
+          codeDisplay.textContent = `NT-${randomNum}`;
+
+          codeDisplay.style.animation = 'shimmer 1s ease-in-out';
+          setTimeout(() => {
+            codeDisplay.style.animation = '';
+          }, 1000);
+        }
+      }, 50);
+    }
+
+    window.addEventListener('load', () => {
+      generateCode();
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    let clickCount = 0;
+    document.querySelector('.hero h1').addEventListener('click', () => {
+      clickCount++;
+      if (clickCount === 5) {
+        alert('🎉 Chúc mừng! Bạn đã mở khóa thành tựu "Người ủng hộ nhiệt tình"!\n\nPhần thưởng: Không có gì cả, nhưng cảm ơn bạn đã click! 😂');
+        clickCount = 0;
+      }
+    });
+
+    setInterval(() => {
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      testimonials.forEach(t => (t.style.transform = ''));
+
+      const random = Math.floor(Math.random() * testimonials.length);
+      testimonials[random].style.transform = 'scale(1.02)';
+      testimonials[random].style.transition = 'transform 0.5s ease';
+    }, 5000);
+
+    function showParodyMessage() {
+      alert('😄 Cảm ơn bạn đã quan tâm!\n\n🎭 Đây là website PARODY/MEME\n\n⚠️ VUI LÒNG KHÔNG chuyển tiền thật!\n\nWebsite này được tạo ra nhằm mục đích giải trí và châm biếm, không phải là dự án thiện nguyện thật sự.\n\nNếu bạn muốn làm từ thiện, hãy tìm các tổ chức uy tín và minh bạch! 💝');
+    }
+  </script>
+</body>
+</html>
